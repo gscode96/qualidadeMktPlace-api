@@ -1,7 +1,5 @@
 package br.com.senai.qualidademltplaceapi.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,15 +24,15 @@ public class AvaliacaoSeviceImpl implements AvaliacaoService {
 		
 		AvaliacaoCliente AvaliacaoEncontrada = avaliacaoRepository.buscarPorAvaliacao(idAvaliacao);
 		Preconditions.checkNotNull(AvaliacaoEncontrada,
-				"não foi encontrado id para a avalição enformado ");
+				"não foi encontrado avaliação para o id informado ");
 		
 		return AvaliacaoEncontrada;
 
 	}
 	
 	@Override
-	public Page<AvaliacaoCliente> buscarPorPedido( Integer idPedido) {
-		Page<AvaliacaoCliente> avaliacoes = avaliacaoRepository.buscarPorPedido(idPedido);
+	public Page<AvaliacaoCliente> buscarPorPedido( Integer idPedido, Pageable paginacao) {
+		Page<AvaliacaoCliente> avaliacoes = avaliacaoRepository.buscarPorPedido(idPedido, paginacao);
 		Preconditions.checkNotNull(avaliacoes, "O id do pedido informado não existe!");
 		
 		return avaliacoes;

@@ -26,7 +26,7 @@ public interface AvaliacaoService {
 			
 			@NotNull(message = "O id é obrigatorio !")
 			@Positive(message = "O id deve ser positivo !")
-			Integer idPedido 
+			Integer idPedido, Pageable paginacao 
 			);
 	
 	public Page<AvaliacaoCliente> listarPor(

@@ -40,7 +40,7 @@ public class AvaliacaoCliente {
 	@NotBlank(message = "A avalição é obrigatória!")
 	private String avaliacao;
 	
-	@Column
+	@Column(name = "data_avaliacao")
 	@NotBlank(message = "A data é obrigatoria" )
 	private LocalDateTime dtAvalicao ;
 	

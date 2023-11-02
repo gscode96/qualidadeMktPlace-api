@@ -35,7 +35,7 @@ public class Ouvidoria {
 	@NotBlank(message = "A descrição é obrigatória!")
 	private String descricao;
 	
-	@Column
+	@Column(name = "data_ouvidoria")
 	@NotBlank(message = "A data é obrigatoria" )
 	private LocalDateTime dtAvalicao ;
 	

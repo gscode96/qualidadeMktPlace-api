@@ -1,7 +1,5 @@
 package br.com.senai.qualidademltplaceapi.repository;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,8 +16,8 @@ public interface AvaliacaoRepository extends JpaRepository<AvaliacaoCliente, Int
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.id = :idAvaliacao")
 	public AvaliacaoCliente buscarPorAvaliacao(Integer idAvaliacao);
 
-	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.id_pedido = :idPedido")
-	public Page<AvaliacaoCliente> buscarPorPedido(Integer idPedido);
+	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.idPedido = :idPedido")
+	public Page<AvaliacaoCliente> buscarPorPedido(Integer idPedido, Pageable paginacao);
 	
 	@Query(value = "SELECT a FROM AvaliacaoCliente a ORDER BY a.qtdEstrelas, a.id")
 	public Page<AvaliacaoCliente> listarPor(Pageable paginacao); 
