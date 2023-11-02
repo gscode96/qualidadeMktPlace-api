@@ -22,7 +22,7 @@ public interface AvaliacaoService {
 			Integer idAvaliacao 
 			);
 	
-	public List<AvaliacaoCliente> buscarPorPedido(
+	public Page<AvaliacaoCliente> buscarPorPedido(
 			
 			@NotNull(message = "O id é obrigatorio !")
 			@Positive(message = "O id deve ser positivo !")

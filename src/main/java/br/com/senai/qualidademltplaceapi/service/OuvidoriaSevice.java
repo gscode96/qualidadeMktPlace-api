@@ -23,7 +23,7 @@ public interface OuvidoriaSevice {
 			Integer idOuvidoria 
 			);
     
-	public AvaliacaoCliente buscarPorNome(
+	public Ouvidoria buscarPorNome(
 			
 			@NotBlank(message = "O nome é obrigatório")
 			@Size(min = 3, max = 100, message = 
@@ -32,7 +32,7 @@ public interface OuvidoriaSevice {
 			
 			);
 	
-	public Page<AvaliacaoCliente> listarPor(
+	public Page<Ouvidoria> listarPor(
 			
 			@NotNull(message = "A quantidade de paginas é obrigatorio !")
 			Pageable paginacao 

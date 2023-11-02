@@ -31,22 +31,24 @@ public class AvaliacaoSeviceImpl implements AvaliacaoService {
 		return AvaliacaoEncontrada;
 
 	}
-  // continuar service, precisa traser uma lista pois o pedido compõe tre itens
+	
 	@Override
-	public List<AvaliacaoCliente> buscarPorPedido( Integer idPedido) {
+	public Page<AvaliacaoCliente> buscarPorPedido( Integer idPedido) {
+		Page<AvaliacaoCliente> avaliacoes = avaliacaoRepository.buscarPorPedido(idPedido);
+		Preconditions.checkNotNull(avaliacoes, "O id do pedido informado não existe!");
 		
-		return null;
+		return avaliacoes;
 	}
 
 	@Override
 	public Page<AvaliacaoCliente> listarPor(Pageable paginacao) {
 
-		return null;
+		return avaliacaoRepository.listarPor(paginacao);
 	}
 
 	@Override
 	public Page<AvaliacaoCliente> listarPorTipo(Pageable paginacao, TipoAvaliacao tipoAvaliacao) {
-		return null;
+		return avaliacaoRepository.listarPorTipo(tipoAvaliacao, paginacao);
 	}
 
 }
