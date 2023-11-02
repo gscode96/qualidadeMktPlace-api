@@ -1,5 +1,7 @@
 package br.com.senai.qualidademltplaceapi.entity;
 
+import java.time.LocalDateTime;
+
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,8 +40,12 @@ public class AvaliacaoCliente {
 	@NotBlank(message = "A avalição é obrigatória!")
 	private String avaliacao;
 	
+	@Column
+	@NotBlank(message = "A data é obrigatoria" )
+	private LocalDateTime dtAvalicao ;
+	
 	@Enumerated(value = EnumType.STRING)
-	@NotNull(message = "O tipo de avaliação da pedido é obrigatório!")
+	@NotNull(message = "O tipo de avaliação do pedido é obrigatório!")
 	private TipoAvaliacao tipoAvaliacao;
 
 }

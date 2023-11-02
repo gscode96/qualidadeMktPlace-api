@@ -12,13 +12,15 @@ import br.com.senai.qualidademltplaceapi.entity.Ouvidoria;
 public interface OuvidoriaRepository extends JpaRepository<Ouvidoria, Integer> {
 	
 	
-	@Query(value = "SELECT o FROM Ouvidoria o WHERE o.id = :id_ouvidoria")
-	public Ouvidoria buscarPorOuvidoria(Integer id_ouvidoria);
+	@Query(value = "SELECT o FROM Ouvidoria o WHERE o.id = :idOuvidoria")
+	public Ouvidoria buscarPorOuvidoria(Integer idOuvidoria);
+
 	
 	@Query(value = "SELECT o FROM Ouvidoria o WHERE o.nome = :nome")
 	public Ouvidoria buscarPorNome(String nome);
 	
 	@Query(value = "SELECT o FROM Ouvidoria o ORDER BY o.nome")
 	public Page<Ouvidoria> listarPor(Pageable paginacao);
+	
 	
 }

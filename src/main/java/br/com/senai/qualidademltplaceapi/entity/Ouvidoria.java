@@ -1,5 +1,8 @@
 package br.com.senai.qualidademltplaceapi.entity;
 
+
+import java.time.LocalDateTime;
+
 import br.com.senai.qualidademltplaceapi.entity.enums.FormaContato;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +34,10 @@ public class Ouvidoria {
 	@Column(name = "descricao")
 	@NotBlank(message = "A descrição é obrigatória!")
 	private String descricao;
+	
+	@Column
+	@NotBlank(message = "A data é obrigatoria" )
+	private LocalDateTime dtAvalicao ;
 	
 	@Column(name = "forma_contato")
 	@Enumerated(value = EnumType.STRING)
