@@ -12,6 +12,7 @@ import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.Ouvidoria;
 import br.com.senai.qualidademltplaceapi.repository.OuvidoriaRepository;
 import br.com.senai.qualidademltplaceapi.service.OuvidoriaSevice;
+import jakarta.validation.constraints.NotNull;
 
 @Service
 public class OuvidoriaSeviceImpl implements OuvidoriaSevice {
@@ -37,6 +38,12 @@ public class OuvidoriaSeviceImpl implements OuvidoriaSevice {
 	public Page<Ouvidoria> listarPor( Pageable paginacao) {
 
 		return repository.listarPor(paginacao);
+	}
+
+	@Override
+	public Ouvidoria Salvar(Ouvidoria ouvidoria) {
+		Ouvidoria ouvidoriaSalva = repository.save(ouvidoria);
+		return ouvidoriaSalva;
 	}
 
 }

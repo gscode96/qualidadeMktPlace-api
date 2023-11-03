@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,7 +37,7 @@ public class Ouvidoria {
 	private String descricao;
 	
 	@Column(name = "data_ouvidoria")
-	@NotBlank(message = "A data é obrigatoria" )
+	@NotNull(message = "A data é obrigatoria" )
 	private LocalDateTime dtAvalicao ;
 	
 	@Column(name = "forma_contato")

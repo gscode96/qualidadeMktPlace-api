@@ -13,32 +13,21 @@ import jakarta.validation.constraints.Size;
 
 @Validated
 public interface OuvidoriaSevice {
-	
-	
-	
-    public Ouvidoria buscarPorOuvidoria(
-			
-			@NotNull(message = "O id é obrigatorio !")
-			@Positive(message = "O id deve ser positivo !")
-			Integer idOuvidoria 
-			);
-    
-	public Ouvidoria buscarPorNome(
-			
-			@NotBlank(message = "O nome é obrigatório")
-			@Size(min = 3, max = 100, message = 
-			"O nome deve conter pelo menos 3 e 100 caracteres")
-			String nome
-			
-			);
-	
-	public Page<Ouvidoria> listarPor(
-			
-			@NotNull(message = "A quantidade de paginas é obrigatorio !")
-			Pageable paginacao 
-			);
-	
-	
 
+	public Ouvidoria buscarPorOuvidoria(
+
+			@NotNull(message = "O id é obrigatorio !") @Positive(message = "O id deve ser positivo !") Integer idOuvidoria);
+
+	public Ouvidoria buscarPorNome(
+
+			@NotBlank(message = "O nome é obrigatório") @Size(min = 3, max = 100, message = "O nome deve conter pelo menos 3 e 100 caracteres") String nome
+
+	);
+
+	public Page<Ouvidoria> listarPor(
+
+			@NotNull(message = "A quantidade de paginas é obrigatorio !") Pageable paginacao);
+
+	public Ouvidoria Salvar(@NotNull(message = "A ouvidoria é obrigatória") Ouvidoria ouvidoria);
 
 }

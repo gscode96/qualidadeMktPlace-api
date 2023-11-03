@@ -19,7 +19,7 @@ public interface AvaliacaoRepository extends JpaRepository<AvaliacaoCliente, Int
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.idPedido = :idPedido")
 	public Page<AvaliacaoCliente> buscarPorPedido(Integer idPedido, Pageable paginacao);
 	
-	@Query(value = "SELECT a FROM AvaliacaoCliente a ORDER BY a.qtdEstrelas, a.id")
+	@Query(value = "SELECT a FROM AvaliacaoCliente a ORDER BY a.qtdEstrelas, a.id DESC")
 	public Page<AvaliacaoCliente> listarPor(Pageable paginacao); 
 
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.tipoAvaliacao = :tipoAvaliacao")

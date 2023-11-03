@@ -29,11 +29,11 @@ public class AvaliacaoCliente {
 	private Integer id;
 	
 	@Column(name = "id_pedido")
-	@NotBlank(message = "O id do pedido é obrigatório!")
+	@NotNull(message = "O id do pedido é obrigatório!")
 	private Integer idPedido;
 	
 	@Column(name = "qtde_estrelas")
-	@NotBlank(message = "A quantidade de estrelas é obrigatória!")
+	@NotNull(message = "A quantidade de estrelas é obrigatória!")
 	private Integer qtdEstrelas;
 	
 	@Column(name = "avaliacao")
@@ -41,7 +41,7 @@ public class AvaliacaoCliente {
 	private String avaliacao;
 	
 	@Column(name = "data_avaliacao")
-	@NotBlank(message = "A data é obrigatoria" )
+	@NotNull(message = "A data é obrigatoria" )
 	private LocalDateTime dtAvalicao ;
 	
 	@Enumerated(value = EnumType.STRING)
