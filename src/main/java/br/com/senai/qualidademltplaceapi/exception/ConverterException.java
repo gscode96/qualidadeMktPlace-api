@@ -1,11 +1,11 @@
 package br.com.senai.qualidademltplaceapi.exception;
 
-public class IntegracaoException extends RuntimeException{
+public class ConverterException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public IntegracaoException(String mensagem) {
+	public ConverterException(String mensagem) {
 		super(mensagem);
 	}
-	
+
 }
