@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,6 +34,7 @@ public class AvaliacaoCliente {
 	private Integer idPedido;
 	
 	@Column(name = "qtde_estrelas")
+	@Size(min = 0 , max = 5 ,message = "Só pode ter no max 5 estrelas.")
 	@NotNull(message = "A quantidade de estrelas é obrigatória!")
 	private Integer qtdEstrelas;
 	
