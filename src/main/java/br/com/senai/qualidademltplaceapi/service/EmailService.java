@@ -18,15 +18,17 @@ public class EmailService {
 	
 	@Autowired
 	SendGrid sendGrid ;
+
 	
 	public Response sendemail(EmailRequest emailRequest ) {
 		
-		Mail mail = new Mail(new Email("Luiz_h_correa@estudante.sc.senai.br"),emailRequest.getSubject()
-				,new Email(emailRequest.getTo()),new Content("texte/plain" , emailRequest.getBody()) );
-		mail.setReplyTo(new Email("Luuiz.pereira.correa@gmail.com"));
-		Request request = null ;
+		Mail mail = new Mail(new Email("luuiz.pereira.correa@gmail.com"),emailRequest.getSubject()
+				,new Email(emailRequest.getTo()),new Content("text/plain" , emailRequest.getBody()) );
+		mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
 		
-		Response response = null;
+		Request request = new Request() ;
+		
+		Response response = new Response();
 				
 		try  {
 			
@@ -44,7 +46,7 @@ public class EmailService {
 			
 		}
 		
-		return null ;
+		return response ;
 	}
 
 }

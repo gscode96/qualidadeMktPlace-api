@@ -18,7 +18,7 @@ public class EmailController {
 	@Autowired
 	private EmailService emailservice;
 	
-	@PostMapping("/Sendemail")
+	@PostMapping("/sendemail")
 	public ResponseEntity<String> sendemail(@RequestBody EmailRequest resquest ){
 		
 		Response response = emailservice.sendemail(resquest) ;
