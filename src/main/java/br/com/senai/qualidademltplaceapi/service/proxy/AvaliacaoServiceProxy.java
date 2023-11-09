@@ -10,7 +10,7 @@ import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
 
-@Service
+
 public class AvaliacaoServiceProxy implements AvaliacaoService {
 	
 	@Autowired

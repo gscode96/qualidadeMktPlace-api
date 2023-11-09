@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import br.com.senai.qualidademltplaceapi.controller.dto.Notificacao;
+import br.com.senai.qualidademltplaceapi.dto.Notificacao;
 import br.com.senai.qualidademltplaceapi.integration.processor.ErrorProcessor;
 
 @Component

@@ -50,4 +50,6 @@ public class AvaliacaoCliente {
 	@NotNull(message = "O tipo de avaliação do pedido é obrigatório!")
 	private TipoAvaliacao tipoAvaliacao;
 
+	
+
 }
