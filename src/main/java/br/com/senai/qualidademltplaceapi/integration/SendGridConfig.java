@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.sendgrid.SendGrid;
 
 @Configuration
-public class sendGridConfig {
+public class SendGridConfig {
 
 	@Value("${sendgrid.key}")
 	private String key;

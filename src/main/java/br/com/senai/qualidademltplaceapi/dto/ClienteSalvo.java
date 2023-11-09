@@ -7,5 +7,4 @@ public class ClienteSalvo {
 	@NotNull(message = "O email do cliente é obrigatório!")
 	String email;
 	
-	
 }
