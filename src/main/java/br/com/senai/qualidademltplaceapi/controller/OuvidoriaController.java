@@ -3,6 +3,7 @@ package br.com.senai.qualidademltplaceapi.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.Ouvidoria;
 import br.com.senai.qualidademltplaceapi.service.OuvidoriaSevice;
 
@@ -22,7 +22,8 @@ import br.com.senai.qualidademltplaceapi.service.OuvidoriaSevice;
 @RequestMapping("/ouvidoria")
 public class OuvidoriaController {
 	
-	@Autowired
+	@Autowired  
+	@Qualifier("ouvidoriaServiceProxy")
 	private OuvidoriaSevice service;
 	
 	@Autowired

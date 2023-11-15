@@ -22,30 +22,30 @@ import lombok.EqualsAndHashCode;
 @Table(name = "avaliacao_cliente")
 @Entity(name = "AvaliacaoCliente")
 public class AvaliacaoCliente {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Integer id;
-	
+
 	@Column(name = "id_pedido")
 	@NotNull(message = "O id do pedido é obrigatório!")
 	private Integer idPedido;
-	
+
 	@Column(name = "qtde_estrelas")
-	@Size(min = 0 , max = 5 ,message = "Só pode ter no max 5 estrelas.")
+	@Size(min = 0, max = 5, message = "Só pode ter no max 5 estrelas.")
 	@NotNull(message = "A quantidade de estrelas é obrigatória!")
 	private Integer qtdEstrelas;
-	
+
 	@Column(name = "avaliacao")
 	@NotBlank(message = "A avalição é obrigatória!")
 	private String avaliacao;
-	
+
 	@Column(name = "data_avaliacao")
-	@NotNull(message = "A data é obrigatoria" )
-	private LocalDateTime dtAvalicao ;
-	
+	@NotNull(message = "A data é obrigatoria")
+	private LocalDateTime dtAvalicao;
+
 	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O tipo de avaliação do pedido é obrigatório!")
 	private TipoAvaliacao tipoAvaliacao;

@@ -14,11 +14,9 @@ import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
 public class AvaliacaoServiceProxy implements AvaliacaoService {
 	
 	@Autowired
-	@Qualifier("avaliacaoServiceServiceImpl")
+	@Qualifier("avaliacaoServiceImpl")
 	private AvaliacaoService service ;
 	
-
-
 	@Override
 	public AvaliacaoCliente buscarPorAvaliacao(Integer idAvaliacao) {
 		return service.buscarPorAvaliacao(idAvaliacao) ;

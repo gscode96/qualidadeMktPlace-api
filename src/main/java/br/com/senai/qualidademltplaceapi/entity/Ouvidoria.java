@@ -1,6 +1,5 @@
 package br.com.senai.qualidademltplaceapi.entity;
 
-
 import java.time.LocalDateTime;
 
 import br.com.senai.qualidademltplaceapi.entity.enums.FormaContato;
@@ -22,24 +21,24 @@ import lombok.EqualsAndHashCode;
 @Table(name = "ouvidoria")
 @Entity(name = "Ouvidoria")
 public class Ouvidoria {
-	
+
 	@Id
 	@Column(name = "id_ouvidoria")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Integer id;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "descricao")
 	@NotBlank(message = "A descrição é obrigatória!")
 	private String descricao;
-	
+
 	@Column(name = "data_ouvidoria")
-	@NotNull(message = "A data é obrigatoria" )
-	private LocalDateTime dtAvalicao ;
-	
+	@NotNull(message = "A data é obrigatoria")
+	private LocalDateTime dtAvalicao;
+
 	@Column(name = "forma_contato")
 	@Enumerated(value = EnumType.STRING)
 	private FormaContato formaContato;

@@ -13,25 +13,31 @@ import jakarta.validation.constraints.Positive;
 public interface AvaliacaoService {
 
 	public AvaliacaoCliente buscarPorAvaliacao(
-
-			@NotNull(message = "O id é obrigatorio !") @Positive(message = "O id deve ser positivo !") Integer idAvaliacao);
+			@NotNull(message = "O id é obrigatorio !")
+			@Positive(message = "O id deve ser positivo !") 
+			Integer idAvaliacao);
 
 	public Page<AvaliacaoCliente> buscarPorPedido(
 
-			@NotNull(message = "O id é obrigatorio !") @Positive(message = "O id deve ser positivo !") Integer idPedido,
+			@NotNull(message = "O id é obrigatorio !") 
+			@Positive(message = "O id deve ser positivo !")
+			Integer idPedido,
 			Pageable paginacao);
 
 	public Page<AvaliacaoCliente> listarPor(
-
-			@NotNull(message = "A quantidade de paginas é obrigatorio !") Pageable paginacao);
+			@NotNull(message = "A quantidade de paginas é obrigatorio !") 
+			Pageable paginacao);
 
 	public Page<AvaliacaoCliente> listarPorTipo(
-
-			@NotNull(message = "A quantidade de paginas é obrigatorio !") Pageable paginacao,
-			@NotNull(message = "O Tipo de avaliação é obrigatorio !") TipoAvaliacao tipoAvaliacao
+			@NotNull(message = "A quantidade de paginas é obrigatorio !") 
+			Pageable paginacao,
+			@NotNull(message = "O Tipo de avaliação é obrigatorio !") 
+			TipoAvaliacao tipoAvaliacao
 
 	);
 
-	public AvaliacaoCliente Salvar(@NotNull(message = "A avaliação é obrigatória") AvaliacaoCliente avaliacao);
+	public AvaliacaoCliente Salvar(
+			@NotNull(message = "A avaliação é obrigatória") 
+			AvaliacaoCliente avaliacao);
 
 }

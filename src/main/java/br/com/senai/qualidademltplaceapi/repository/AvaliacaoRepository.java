@@ -12,18 +12,16 @@ import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 @Repository
 public interface AvaliacaoRepository extends JpaRepository<AvaliacaoCliente, Integer> {
 
-
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.id = :idAvaliacao")
 	public AvaliacaoCliente buscarPorAvaliacao(Integer idAvaliacao);
 
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.idPedido = :idPedido")
 	public Page<AvaliacaoCliente> buscarPorPedido(Integer idPedido, Pageable paginacao);
-	
+
 	@Query(value = "SELECT a FROM AvaliacaoCliente a ORDER BY a.qtdEstrelas, a.id DESC")
-	public Page<AvaliacaoCliente> listarPor(Pageable paginacao); 
+	public Page<AvaliacaoCliente> listarPor(Pageable paginacao);
 
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.tipoAvaliacao = :tipoAvaliacao")
 	public Page<AvaliacaoCliente> listarPorTipo(TipoAvaliacao tipoAvaliacao, Pageable paginacao);
-
 
 }

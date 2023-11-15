@@ -3,6 +3,7 @@ package br.com.senai.qualidademltplaceapi.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
 public class AvaliacaoController {
 
 	@Autowired
+	@Qualifier("avaliacaoServiceProxy")
 	private AvaliacaoService service;
 
 	@Autowired

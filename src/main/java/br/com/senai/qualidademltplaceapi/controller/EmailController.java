@@ -14,18 +14,18 @@ import br.com.senai.qualidademltplaceapi.service.EmailService;
 
 @Controller
 public class EmailController {
-	
+
 	@Autowired
 	private EmailService emailservice;
-	
+
 	@PostMapping("/sendemail")
-	public ResponseEntity<String> sendemail(@RequestBody EmailRequest resquest ){
-		
-		Response response = emailservice.sendemail(resquest) ;
-		if(response.getStatusCode() == 200 || response.getStatusCode() == 202)
-			return new ResponseEntity<> ("send successfully" , HttpStatus.OK);
+	public ResponseEntity<String> sendemail(@RequestBody EmailRequest resquest) {
+
+		Response response = emailservice.sendemail(resquest);
+		if (response.getStatusCode() == 200 || response.getStatusCode() == 202)
+			return new ResponseEntity<>("send successfully", HttpStatus.OK);
 		return new ResponseEntity<>("failed ton sent", HttpStatus.NOT_FOUND);
-		
+
 	}
 
 }

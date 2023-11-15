@@ -11,10 +11,9 @@ import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.repository.AvaliacaoRepository;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
-import jakarta.validation.constraints.NotNull;
 
 @Service
-public class AvaliacaoSeviceImpl implements AvaliacaoService {
+public class AvaliacaoServiceImpl implements AvaliacaoService {
 
 	@Autowired
 	private AvaliacaoRepository avaliacaoRepository;

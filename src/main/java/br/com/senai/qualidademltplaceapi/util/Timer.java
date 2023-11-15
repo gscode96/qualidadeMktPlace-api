@@ -1,7 +1,5 @@
 package br.com.senai.qualidademltplaceapi.util;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
@@ -9,30 +7,22 @@ import br.com.senai.qualidademltplaceapi.integration.rota.ToAvaliacoes;
 
 public class Timer {
 
-	       
-	        
-	        public List<PedidoSalvo> chamodoDeCliente() {
-	 	        	
-	 	        	ToAvaliacoes toAvaliacoes = new ToAvaliacoes();
+	public List<PedidoSalvo> chamodoDeCliente() {
 
-	 	           // Executa o método configure para iniciar o processo de roteamento
-	 	           try {
-	 	               toAvaliacoes.configure();
-	 	           } catch (Exception e) {
-	 	               e.printStackTrace();
-	 	           }
+		ToAvaliacoes toAvaliacoes = new ToAvaliacoes();
 
-	 	           // lista de PedidoSalvo da instância de ToAvaliacoes
-	 	          List<PedidoSalvo> listaDePedidos = toAvaliacoes.getPedidoSalvos();
+		// Executa o método configure para iniciar o processo de roteamento
+		try {
+			toAvaliacoes.configure();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		 	      
-	 	          return listaDePedidos ;
-	 	        
-			}
+		// lista de PedidoSalvo da instância de ToAvaliacoes
+		List<PedidoSalvo> listaDePedidos = toAvaliacoes.getPedidoSalvos();
 
-	    
-	
+		return listaDePedidos;
 
-	
+	}
 
 }

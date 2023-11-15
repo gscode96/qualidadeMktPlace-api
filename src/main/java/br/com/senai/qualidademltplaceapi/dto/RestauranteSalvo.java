@@ -6,6 +6,5 @@ public class RestauranteSalvo {
 
 	@NotNull(message = "O nome do restaurante é obrigatório!")
 	String nome;
-	
-	
+
 }

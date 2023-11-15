@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import br.com.senai.qualidademltplaceapi.entity.Ouvidoria;
 import br.com.senai.qualidademltplaceapi.service.OuvidoriaSevice;
 
-
+@Service
 public class OuvidoriaServiceProxy implements OuvidoriaSevice{
 	
-	@Autowired
+	@Autowired  
 	@Qualifier("ouvidoriaServiceImpl")
 	private OuvidoriaSevice service;
 
