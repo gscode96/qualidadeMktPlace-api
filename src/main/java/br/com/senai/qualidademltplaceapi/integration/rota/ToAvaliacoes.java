@@ -7,6 +7,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http.HttpMethods;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ import br.com.senai.qualidademltplaceapi.integration.processor.ErrorProcessor;
 @Component
 public class ToAvaliacoes extends RouteBuilder {
 
-	@Value("${http://localhost9090/}")
+	@Value("${http://localhost9090/api}")
 	private String urlDeEnvio;
 
 	@Autowired
@@ -34,10 +35,14 @@ public class ToAvaliacoes extends RouteBuilder {
 	@Override
 	public void configure() throws Exception {
 		// Faz o get na api de terceiro
-		from("direct:Perguntar pro professor").doTry().setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.GET))
+		from("direct:toApiPedidos").doTry().setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.GET))
 				.setHeader(Exchange.CONTENT_TYPE, simple("application/json;charset=UTF-8")).process(new Processor() {
 					@Override
 					public void process(Exchange exchange) throws Exception {
+						String jsonBody = exchange.getMessage().getBody(String.class);
+						JSONObject jsonObject = new JSONObject(jsonBody) ;
+						exchange.getMessage().setBody(jsonObject);
+						
 						PedidoSalvo pedidoSalvo = exchange.getMessage().getBody(PedidoSalvo.class);
 						// Adicione o pedidoSalvo à lista
 						pedidoSalvos.add(pedidoSalvo);

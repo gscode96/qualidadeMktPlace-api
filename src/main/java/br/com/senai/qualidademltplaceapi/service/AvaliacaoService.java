@@ -1,9 +1,12 @@
 package br.com.senai.qualidademltplaceapi.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 
+import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
 import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import jakarta.validation.constraints.NotNull;
@@ -33,11 +36,18 @@ public interface AvaliacaoService {
 			Pageable paginacao,
 			@NotNull(message = "O Tipo de avaliação é obrigatorio !") 
 			TipoAvaliacao tipoAvaliacao
-
 	);
 
 	public AvaliacaoCliente Salvar(
 			@NotNull(message = "A avaliação é obrigatória") 
 			AvaliacaoCliente avaliacao);
+	
+	default public List<PedidoSalvo> getPedido() 
+	{ throw new RuntimeException("Erro get pedido "); };
+	
+		
+};
+	
 
-}
+
+

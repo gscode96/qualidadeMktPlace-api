@@ -1,5 +1,8 @@
 package br.com.senai.qualidademltplaceapi;
 
+
+import java.time.LocalTime;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
+
+import br.com.senai.qualidademltplaceapi.util.Timer;
 
 
 
@@ -26,6 +31,10 @@ public class InitApp {
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
+			
+			LocalTime now = LocalTime.now();
+			
+			Timer time = null ;
 			
 			System.out.println("Subiu");
 		};
