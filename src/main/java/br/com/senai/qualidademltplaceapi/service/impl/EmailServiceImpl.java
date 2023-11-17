@@ -32,7 +32,7 @@ public class EmailServiceImpl implements EmailService {
 	@Qualifier("avaliacaoServiceProxy")
 	AvaliacaoService service;
 
-	public void sendEmails() {
+	public Runnable sendEmails() {
 
 		// faz a busca na api de pedidos
 		List<PedidoSalvo> listaDePedidos = service.getPedido();
@@ -57,6 +57,7 @@ public class EmailServiceImpl implements EmailService {
 				System.out.println(ex.getMessage());
 			}
 		}
+		return null;
 	}
 
 	@Override

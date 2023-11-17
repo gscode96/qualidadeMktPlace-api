@@ -14,7 +14,7 @@ import br.com.senai.qualidademltplaceapi.integration.processor.ErrorProcessor;
 @Component
 public class ToAvaliacoes extends RouteBuilder {
 
-	 @Value("${cadastros.url}")
+		@Value("${cadastros.url}")
 	    private String urlDeEnvio;
 
 	    @Value("${cadastros.url.token}")
@@ -32,22 +32,22 @@ public class ToAvaliacoes extends RouteBuilder {
 	    @Override
 	    public void configure() throws Exception {
 	        from("direct:toApiPedidos")
-	            .doTry()
+	            .doTry()	            	
 	                .process(new Processor() {
 	                    @Override
 	                    public void process(Exchange exchange) throws Exception {
 	                        String responseJson = exchange.getIn().getBody(String.class);
 	                        JSONObject jsonObject = new JSONObject(responseJson);
-	                        Integer idCliente = jsonObject.getInt("idCliente");
-	                        exchange.setProperty("idCliente", idCliente);
+	                        String statusDoPedido = jsonObject.getString("status");
+	                        exchange.setProperty("statusDoPedido", statusDoPedido);
 	                    }
 	                })
-	                .to("direct:autenticarToken") // Call token verification route
+	                .toD("direct:autenticarPedidos") 
 	                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.GET))
 	                .setHeader(Exchange.CONTENT_TYPE, constant("application/json;charset=UTF-8"))
 	                .setHeader("Authorization", simple("Bearer ${exchangeProperty.token}"))
 	                //indica a rota a onde sera feita o get
-	                .toD(urlDeEnvio + "/pedidos ")
+	                .toD(urlDeEnvio + "/pedidos?status=${exchangeProperty.statusDoPedido}")
 	                .process(new Processor() {
 	                    @Override
 	                    public void process(Exchange exchange) throws Exception {
@@ -61,20 +61,6 @@ public class ToAvaliacoes extends RouteBuilder {
 	                .process(errorProcessor)
 	            .end();
 
-	        // verificação da rota do token
-	        from("direct:autenticarToken")
-	            .setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.POST))
-	            .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-	            .setBody(simple("{\"login\":\"${property.login}\",\"senha\":\"${property.senha}\"}"))
-	            .to(urlDeToken)
-	            .process(new Processor() {
-	                @Override
-	                public void process(Exchange exchange) throws Exception {
-	                    String responseJson = exchange.getIn().getBody(String.class);
-	                    JSONObject jsonObject = new JSONObject(responseJson);
-	                    String token = jsonObject.getString("token");
-	                    exchange.setProperty("token", token);
-	                }
-	            });
+	       
 	    }
 }

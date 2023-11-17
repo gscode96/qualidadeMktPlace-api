@@ -14,13 +14,13 @@ public class ToAutenticacao extends RouteBuilder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Value("${cadastros.login}")
+	@Value("${pedidos.login}")
 	private String login;
 
-	@Value("${cadastros.password}")
+	@Value("${pedidos.password}")
 	private String senha;
 	
-	@Value("${cadastros.url.token}")
+	@Value("${pedidos.url}")
 	private String urlDeToken;
 	
 	@Override
@@ -37,7 +37,8 @@ public class ToAutenticacao extends RouteBuilder implements Serializable {
 				exchange.getMessage().setBody(requestBody.toString());
 			}
 		})
-		.to(urlDeToken).process(new Processor() {
+		.toD(urlDeToken + "/auth")
+		.process(new Processor() {
 			@Override
 			public void process(Exchange exchange) throws Exception {
 				String responseJson = exchange.getMessage().getBody(String.class);

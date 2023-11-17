@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
 
+import br.com.senai.qualidademltplaceapi.service.impl.EmailServiceImpl;
 import br.com.senai.qualidademltplaceapi.util.Timer;
 
 
@@ -32,9 +33,10 @@ public class InitApp {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 			
-			LocalTime now = LocalTime.now();
+			new Timer();
 			
-			Timer time = null ;
+			EmailServiceImpl emailServiceImpl = null ;
+			emailServiceImpl.sendEmails();
 			
 			System.out.println("Subiu");
 		};

@@ -1,9 +1,9 @@
 package br.com.senai.qualidademltplaceapi.service.proxy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.util.json.JsonObject;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,9 +29,18 @@ public class AvaliacaoServiceProxy implements AvaliacaoService {
 	@Override
 	public List<PedidoSalvo> getPedido() {
 		
-		List<PedidoSalvo> pedidoSalvos = this.toApiPedidos.requestBody("direct:toApiPedidos", null, List.class);
+		JSONObject bodyRequest = new JSONObject();
+		bodyRequest.put("statusDoPedido", "ENTREGUE");
 		
-		return pedidoSalvos;
+		List<PedidoSalvo> pedidos = new ArrayList<>();
+		
+		JSONObject pedidoSalvos = this.toApiPedidos.requestBody(
+				"direct:toApiPedidos", bodyRequest, JSONObject.class);
+		
+		//Extrair dados do retorno
+		
+		
+		return pedidos;
 	}
 
 	@Override
