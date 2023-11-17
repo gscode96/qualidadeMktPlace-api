@@ -37,9 +37,9 @@ public class OuvidoriaController {
 	
 	@GetMapping("nome/{nome}")
 	public ResponseEntity<?> buscarPorOuvidoria (@PathVariable("nome")String nome) {
-		Ouvidoria ouvidoriaSalva = service.buscarPorNome(nome);
+		Page<Ouvidoria> ouvidoriaSalva = service.buscarPorNome(nome);
 		
-		return ResponseEntity.ok(converter.toJsonMap(ouvidoriaSalva));
+		return ResponseEntity.ok(converter.toJsonList(ouvidoriaSalva));
 	}
 	
 	@GetMapping

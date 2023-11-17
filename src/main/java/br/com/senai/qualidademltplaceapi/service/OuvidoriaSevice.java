@@ -18,7 +18,7 @@ public interface OuvidoriaSevice {
 
 			@NotNull(message = "O id é obrigatorio !") @Positive(message = "O id deve ser positivo !") Integer idOuvidoria);
 
-	public Ouvidoria buscarPorNome(
+	public Page<Ouvidoria> buscarPorNome(
 
 			@NotBlank(message = "O nome é obrigatório") @Size(min = 3, max = 100, message = "O nome deve conter pelo menos 3 e 100 caracteres") String nome
 

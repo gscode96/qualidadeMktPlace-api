@@ -29,13 +29,13 @@ public class AvaliacaoController {
 	private MapConverter converter;
 	
 	@GetMapping("idAvaliacao/{id}")
-	public ResponseEntity<?> BuscarPorIdAvaliacao(@PathVariable("id") Integer id) {
+	public ResponseEntity<?> buscarPorIdAvaliacao(@PathVariable("id") Integer id) {
 		AvaliacaoCliente avaliacaoSalva = service.buscarPorAvaliacao(id);
 		return ResponseEntity.ok(converter.toJsonMap(avaliacaoSalva));
 		}
 		
 		@GetMapping("idPedido/{id}")
-		public ResponseEntity<?> BuscarPorIdPedido(@PathVariable("id") Integer id) {
+		public ResponseEntity<?> buscarPorIdPedido(@PathVariable("id") Integer id) {
 			Pageable paginacao = PageRequest.of(0, 3);
 			Page<AvaliacaoCliente> avaliacaoSalva = service.buscarPorPedido(id,paginacao);
 			return ResponseEntity.ok(converter.toJsonList(avaliacaoSalva));
@@ -52,7 +52,7 @@ public class AvaliacaoController {
 		}
 		
 		@GetMapping("tipo/{tipo}")
-		public ResponseEntity<?> ListarPorTipo(@PathVariable("tipo")TipoAvaliacao tipo) {
+		public ResponseEntity<?> listarPorTipo(@PathVariable("tipo")TipoAvaliacao tipo) {
 			Pageable paginacao = PageRequest.of(0, 15);
 			Page<AvaliacaoCliente> avaliacaoSalva = service.listarPorTipo(paginacao, tipo);
 			return ResponseEntity.ok(converter.toJsonList(avaliacaoSalva));
@@ -60,6 +60,7 @@ public class AvaliacaoController {
 		
 		@PostMapping
 		public ResponseEntity<?> Inserir(@RequestBody AvaliacaoCliente avaliacao) {
+
 			AvaliacaoCliente avaliacaoSalva = service.Salvar(avaliacao);
 			return ResponseEntity.created(URI.create("/avaliacao/id/" + avaliacaoSalva.getId())).build();
 		}

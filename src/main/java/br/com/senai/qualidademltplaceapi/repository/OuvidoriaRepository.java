@@ -17,7 +17,7 @@ public interface OuvidoriaRepository extends JpaRepository<Ouvidoria, Integer> {
 
 	
 	@Query(value = "SELECT o FROM Ouvidoria o WHERE o.nome = :nome")
-	public Ouvidoria buscarPorNome(String nome);
+	public Page<Ouvidoria> buscarPorNome(String nome, Pageable paginacao);
 	
 	@Query(value = "SELECT o FROM Ouvidoria o ORDER BY o.nome")
 	public Page<Ouvidoria> listarPor(Pageable paginacao);

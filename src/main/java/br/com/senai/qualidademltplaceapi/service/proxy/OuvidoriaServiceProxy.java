@@ -21,7 +21,7 @@ public class OuvidoriaServiceProxy implements OuvidoriaSevice{
 	}
 
 	@Override
-	public Ouvidoria buscarPorNome(String nome) {
+	public Page<Ouvidoria> buscarPorNome(String nome) {
 		return service.buscarPorNome(nome);
 	}
 

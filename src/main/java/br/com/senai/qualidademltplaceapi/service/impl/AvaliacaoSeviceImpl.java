@@ -23,7 +23,7 @@ public class AvaliacaoSeviceImpl implements AvaliacaoService {
 	public AvaliacaoCliente buscarPorAvaliacao(Integer idAvaliacao) {
 
 		AvaliacaoCliente AvaliacaoEncontrada = avaliacaoRepository.buscarPorAvaliacao(idAvaliacao);
-		Preconditions.checkNotNull(AvaliacaoEncontrada, "não foi encontrado avaliação para o id informado ");
+		Preconditions.checkNotNull(AvaliacaoEncontrada, "Não foi encontrado avaliação para o id informado ");
 
 		return AvaliacaoEncontrada;
 
@@ -32,7 +32,8 @@ public class AvaliacaoSeviceImpl implements AvaliacaoService {
 	@Override
 	public Page<AvaliacaoCliente> buscarPorPedido(Integer idPedido, Pageable paginacao) {
 		Page<AvaliacaoCliente> avaliacoes = avaliacaoRepository.buscarPorPedido(idPedido, paginacao);
-		Preconditions.checkNotNull(avaliacoes, "O id do pedido informado não existe!");
+		Preconditions.checkArgument(!avaliacoes.isEmpty(), "Não foi encontrado avaliação para o pedido informado!");
+		
 
 		return avaliacoes;
 	}
@@ -45,14 +46,22 @@ public class AvaliacaoSeviceImpl implements AvaliacaoService {
 
 	@Override
 	public Page<AvaliacaoCliente> listarPorTipo(Pageable paginacao, TipoAvaliacao tipoAvaliacao) {
-		return avaliacaoRepository.listarPorTipo(tipoAvaliacao, paginacao);
+		Page<AvaliacaoCliente> avaliacoes = avaliacaoRepository.listarPorTipo(tipoAvaliacao, paginacao);
+		Preconditions.checkArgument(!avaliacoes.isEmpty(), "Não existe avaliação para o tipo informado!");
+		return avaliacoes;
 	}
 
 	@Override
 	public AvaliacaoCliente Salvar(AvaliacaoCliente avaliacao) {
-		AvaliacaoCliente avaliacaoSalva = avaliacaoRepository.save(avaliacao);
+		Preconditions.checkArgument(avaliacao.getTipoAvaliacao().equals(TipoAvaliacao.ENTREGA) 
+				|| avaliacao.getTipoAvaliacao().equals(TipoAvaliacao.PEDIDO) 
+				|| avaliacao.getTipoAvaliacao().equals(TipoAvaliacao.RESTAURANTE), "O tipo da avaliação deve ser ENTREGA, PEDIDO ou RESTAURANTE");
+		Preconditions.checkNotNull(avaliacao.getTipoAvaliacao(), "O tipo de avaliação é obrigatoria!");
 
+
+		AvaliacaoCliente avaliacaoSalva = avaliacaoRepository.save(avaliacao);
 		return avaliacaoSalva;
+
 	}
 
 }
