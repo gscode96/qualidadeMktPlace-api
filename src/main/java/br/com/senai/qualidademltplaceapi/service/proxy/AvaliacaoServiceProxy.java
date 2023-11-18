@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.ProducerTemplate;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,10 +38,24 @@ public class AvaliacaoServiceProxy implements AvaliacaoService {
 		JSONObject pedidoSalvos = this.toApiPedidos.requestBody(
 				"direct:toApiPedidos", bodyRequest, JSONObject.class);
 		
-		//Extrair dados do retorno
-		
-		
-		return pedidos;
+		JSONArray listagem = pedidoSalvos.getJSONArray("listagem");
+
+		    for (int i = 0; i < listagem.length(); i++) {
+		        JSONObject pedidoJson = listagem.getJSONObject(i);
+
+		        PedidoSalvo pedidoSalvo = new PedidoSalvo();
+		        pedidoSalvo.setIdPedido(pedidoJson.getInt("id_pedido"));
+		        pedidoSalvo.setIdCliente(pedidoJson.getInt("id_cliente"));
+		        pedidoSalvo.setIdRestaurante(pedidoJson.getInt("id_restaurante"));
+		        pedidoSalvo.setStatusPedido(pedidoJson.getString("status"));
+		        pedidoSalvo.setEmail(pedidoJson.getJSONObject("cliente").getString("email"));
+
+		        pedidos.add(pedidoSalvo);
+		    }
+		    
+		    System.out.println(pedidos);
+
+		    return pedidos;
 	}
 
 	@Override
