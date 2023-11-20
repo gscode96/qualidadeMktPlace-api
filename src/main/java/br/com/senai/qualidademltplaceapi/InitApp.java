@@ -39,6 +39,7 @@ public class InitApp {
 			emailServiceImpl.sendEmails();
 			
 			System.out.println("Subiu");
+			
 		};
 
 	}
