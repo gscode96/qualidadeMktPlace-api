@@ -28,6 +28,7 @@ public class InitApp {
 		return args -> {
 
 			System.out.println("Subiu");
+			
 		};
 
 	}
