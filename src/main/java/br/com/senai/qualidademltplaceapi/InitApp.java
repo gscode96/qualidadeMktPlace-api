@@ -1,7 +1,7 @@
 package br.com.senai.qualidademltplaceapi;
 
 
-import java.time.LocalTime;
+import java.util.Timer;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
 
-import br.com.senai.qualidademltplaceapi.service.impl.EmailServiceImpl;
-import br.com.senai.qualidademltplaceapi.util.Timer;
+import br.com.senai.qualidademltplaceapi.service.EmailService;
+import br.com.senai.qualidademltplaceapi.service.proxy.EmailServiceProxy;
 
 
 
@@ -33,10 +33,10 @@ public class InitApp {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 			
-			new Timer();
+	//		new Timer();
 			
-			EmailServiceImpl emailServiceImpl = null ;
-			emailServiceImpl.sendEmails();
+	    	EmailService emailService = new EmailServiceProxy();
+	    	emailService.sendEmail();
 			
 			System.out.println("Subiu");
 		};

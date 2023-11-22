@@ -4,7 +4,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import br.com.senai.qualidademltplaceapi.service.impl.EmailServiceImpl;
+import br.com.senai.qualidademltplaceapi.service.EmailService;
+import br.com.senai.qualidademltplaceapi.service.proxy.EmailServiceProxy;
 
 public class Timer {
 	
@@ -12,11 +13,11 @@ public class Timer {
 
 	    public Timer() {
 	    	
-	    	EmailServiceImpl emailServiceImpl = null ;
+	    	//EmailService emailService = new EmailServiceProxy();
 			
 	        // Inicia a tarefa agendada para ser executada a cada 24 horas
 	    	
-	        scheduler.scheduleAtFixedRate(emailServiceImpl.sendEmails(), 0, 24, TimeUnit.HOURS);
+	    //    scheduler.scheduleAtFixedRate(emailService.sendEmail() , 0, 24, TimeUnit.HOURS);
 	    }
 
 

@@ -31,6 +31,8 @@ public class ToAvaliacoes extends RouteBuilder {
 
 	    @Override
 	    public void configure() throws Exception {
+	    	
+	    	//Url para chamar no service
 	        from("direct:toApiPedidos")
 	            .doTry()	            	
 	                .process(new Processor() {
@@ -42,6 +44,7 @@ public class ToAvaliacoes extends RouteBuilder {
 	                        exchange.setProperty("statusDoPedido", statusDoPedido);
 	                    }
 	                })
+	                //Url de autenticação 
 	                .toD("direct:autenticarPedidos") 
 	                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.GET))
 	                .setHeader(Exchange.CONTENT_TYPE, constant("application/json;charset=UTF-8"))
