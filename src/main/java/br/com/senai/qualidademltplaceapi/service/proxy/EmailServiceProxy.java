@@ -7,6 +7,7 @@ import org.apache.camel.ProducerTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.sendgrid.Method;
@@ -20,6 +21,7 @@ import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
 import br.com.senai.qualidademltplaceapi.service.EmailService;
 
 @Service
+@Qualifier("emailServiceProxy")
 public class EmailServiceProxy implements EmailService {
 
 	@Autowired
@@ -39,8 +41,12 @@ public class EmailServiceProxy implements EmailService {
 			String link = "https://localhost:5173/avaliacao/" + pedido.getIdPedido();
 
 			//Monta o email para envio
-			Mail mail = new Mail(new Email("luuiz.pereira.correa@gmail.com"), "Avaliação de satisfação Pede ai ",
-					new Email(pedido.getEmail()), new Content("text/plain", "Faça sua avaliação no link =>" + link));
+			Mail mail = new Mail(
+							new Email(/*email de quem manda->*/"luuiz.pereira.correa@gmail.com")
+									 ,/*cabesalho do email->*/ "Avaliação de satisfação Pede ai",
+								new Email(/*email de quem recebera->*/pedido.getEmail()),
+									new Content(/*Corpo body*/"text/plain", "Faça sua avaliação no link =>" + link));
+			
 			mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
 
 			Request request = new Request();
@@ -64,13 +70,13 @@ public class EmailServiceProxy implements EmailService {
 	public List<PedidoSalvo> getPedido() {
 	
 		JSONObject bodyRequest = new JSONObject();
-		bodyRequest.put("statusDoPedido", "ENTREGUE");
+		bodyRequest.put("statusDoPedido","REALIZADO");
 		
 		List<PedidoSalvo> pedidos = new ArrayList<>();
 		
 		//Chama integração
 		JSONObject pedidoSalvos = this.toApiPedidos.requestBody(
-				"direct:toApiPedidos", bodyRequest, JSONObject.class);
+				"direct:toApiPedidos", bodyRequest.toString(), JSONObject.class);
 		System.out.println("estamos aq 123" );
 		JSONArray listagem = pedidoSalvos.getJSONArray("listagem");
 

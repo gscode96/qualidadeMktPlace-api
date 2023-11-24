@@ -8,7 +8,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http.HttpMethods;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ToAutenticacao extends RouteBuilder implements Serializable {
 	
 
@@ -32,12 +34,12 @@ public class ToAutenticacao extends RouteBuilder implements Serializable {
 			@Override
 			public void process(Exchange exchange) throws Exception {
 				JSONObject requestBody = new JSONObject();
-				requestBody.put("email", login);
+				requestBody.put("login", login);
 				requestBody.put("senha", senha);
 				exchange.getMessage().setBody(requestBody.toString());
 			}
 		})
-		.toD(urlDeToken + "/auth")
+		.to(urlDeToken + "/auth")
 		.process(new Processor() {
 			@Override
 			public void process(Exchange exchange) throws Exception {

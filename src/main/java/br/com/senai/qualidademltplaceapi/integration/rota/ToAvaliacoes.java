@@ -40,12 +40,12 @@ public class ToAvaliacoes extends RouteBuilder {
 	                    public void process(Exchange exchange) throws Exception {
 	                        String responseJson = exchange.getIn().getBody(String.class);
 	                        JSONObject jsonObject = new JSONObject(responseJson);
-	                        String statusDoPedido = jsonObject.getString("status");
+	                        String statusDoPedido = jsonObject.getString("statusDoPedido");
 	                        exchange.setProperty("statusDoPedido", statusDoPedido);
 	                    }
 	                })
 	                //Url de autenticação 
-	                .toD("direct:autenticarPedidos") 
+	                .toD("direct:autenticarPedidos")
 	                .setHeader(Exchange.HTTP_METHOD, constant(HttpMethods.GET))
 	                .setHeader(Exchange.CONTENT_TYPE, constant("application/json;charset=UTF-8"))
 	                .setHeader("Authorization", simple("Bearer ${exchangeProperty.token}"))
@@ -63,7 +63,9 @@ public class ToAvaliacoes extends RouteBuilder {
 	                .setProperty("error", simple("${exception}"))
 	                .process(errorProcessor)
 	            .end();
-
+	        
 	       
 	    }
+	    
+	    
 }
