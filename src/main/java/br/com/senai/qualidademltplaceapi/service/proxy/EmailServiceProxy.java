@@ -38,14 +38,18 @@ public class EmailServiceProxy implements EmailService {
 		List<PedidoSalvo> listaDePedidos = this.getPedido();
 		
 		for (PedidoSalvo pedido : listaDePedidos) {
-			String link = "https://localhost:5173/avaliacao/" + pedido.getIdPedido();
+			
+			Integer idCliente = pedido.getIdPedido();
+			
+			String link = "http://localhost:5173/?idCliente="+ idCliente ;
 
+			
 			//Monta o email para envio
 			Mail mail = new Mail(
 							new Email(/*email de quem manda->*/"luuiz.pereira.correa@gmail.com")
 									 ,/*cabesalho do email->*/ "Avaliação de satisfação Pede ai",
 								new Email(/*email de quem recebera->*/pedido.getEmail()),
-									new Content(/*Corpo body*/"text/plain", "Faça sua avaliação no link =>" + link));
+									new Content(/*Corpo body*/"text/plain",  link ));
 			
 			mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
 
