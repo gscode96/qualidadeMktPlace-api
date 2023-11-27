@@ -1,17 +1,14 @@
 package br.com.senai.qualidademltplaceapi.service;
 
-import com.sendgrid.Response;
+import java.util.List;
 
-import br.com.senai.qualidademltplaceapi.dto.EmailRequest;
-import jakarta.validation.constraints.NotNull;
+import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
 
 public interface EmailService {
 	
 	
-	public Response sendemail(
-			@NotNull(message = "O dto de email é obrigatorio")
-			EmailRequest emailRequest 
-			
-			);
-
+	 public Runnable sendEmail();
+	
+	 public List<PedidoSalvo> getPedido();
+	
 }

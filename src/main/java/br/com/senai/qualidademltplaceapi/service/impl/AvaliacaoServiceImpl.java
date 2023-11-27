@@ -1,11 +1,5 @@
 package br.com.senai.qualidademltplaceapi.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
 
-import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
 import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.repository.AvaliacaoRepository;
