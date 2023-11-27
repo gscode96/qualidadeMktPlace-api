@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -49,5 +50,11 @@ public class AvaliacaoCliente {
 	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O tipo de avaliação do pedido é obrigatório!")
 	private TipoAvaliacao tipoAvaliacao;
+	
+	@Transient
+	public boolean isAvaliado () {
+		return getId() != null && getId() > 0;
+		
+	}
 
 }
