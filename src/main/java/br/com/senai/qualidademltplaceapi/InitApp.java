@@ -1,8 +1,6 @@
 package br.com.senai.qualidademltplaceapi;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +8,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
-
-import br.com.senai.qualidademltplaceapi.service.EmailService;
 
 @SpringBootApplication
 public class InitApp {
@@ -26,9 +22,6 @@ public class InitApp {
 		return new Hibernate5JakartaModule();
 	}
 	
-	@Autowired
-	@Qualifier("emailServiceProxy")
-	private EmailService emailService;
 	
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
@@ -36,7 +29,7 @@ public class InitApp {
 			
 	//		new Timer();
 				    	
-	    	emailService.sendEmail();
+	
 			
 			System.out.println("Subiu");
 			
