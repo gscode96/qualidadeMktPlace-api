@@ -36,17 +36,17 @@ public class AvaliacaoCliente {
 	private Integer idPedido;
 
 	@Column(name = "qtde_estrelas")
-	@Min(value = 1, message = "A quantidade de estrelas deve ser maior que 1")
-	@Max(value = 5, message = "A quantidade de estrelas deve ser menor que 5")
+	@Min(value = 1, message = "A quantidade de estrelas deve ser entre 1 e 5!")
+	@Max(value = 5, message = "A quantidade de estrelas deve ser entre 1 e 5!")
 	@NotNull(message = "A quantidade de estrelas é obrigatória!")
 	private Integer qtdEstrelas;
 
 	@Column(name = "avaliacao")
-	@NotBlank(message = "A avalição é obrigatória!")
+	@NotBlank(message = "A avaliação é obrigatória!")
 	private String avaliacao;
 
 	@Column(name = "data_avaliacao")
-	@NotNull(message = "A data é obrigatoria")
+	@NotNull(message = "A data da avaliação é obrigatoria!")
 	private LocalDateTime dtAvalicao;
 
 	@Enumerated(value = EnumType.STRING)

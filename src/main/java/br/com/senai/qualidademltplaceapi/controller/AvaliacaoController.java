@@ -78,34 +78,6 @@ public class AvaliacaoController {
 			service.Salvar(avaliacaoPedido);
 			service.Salvar(avaliacaoEntrega);
 
-			/*
-			 * AvaliacaoCliente avaliacaoRestaurante = new AvaliacaoCliente();
-			 * AvaliacaoCliente avaliacaoPedido = new AvaliacaoCliente(); AvaliacaoCliente
-			 * avaliacaoEntrega = new AvaliacaoCliente();
-			 * avaliacaoRestaurante.setIdPedido(avaliacaoGeral.getIdDoPedido());
-			 * avaliacaoRestaurante.setAvaliacao(avaliacaoGeral.getAvaliacaoDoRestaurante().
-			 * getComentario());
-			 * avaliacaoRestaurante.setQtdEstrelas(avaliacaoGeral.getAvaliacaoDoRestaurante(
-			 * ).getEstrelas()); avaliacaoRestaurante.setDtAvalicao(LocalDateTime.now());
-			 * avaliacaoRestaurante.setTipoAvaliacao(TipoAvaliacao.RESTAURANTE);
-			 * service.Salvar(avaliacaoRestaurante);
-			 * 
-			 * avaliacaoPedido.setIdPedido(avaliacaoGeral.getIdDoPedido());
-			 * avaliacaoPedido.setAvaliacao(avaliacaoGeral.getAvaliacaoDoPedido().
-			 * getComentario());
-			 * avaliacaoPedido.setQtdEstrelas(avaliacaoGeral.getAvaliacaoDoPedido().
-			 * getEstrelas()); avaliacaoPedido.setDtAvalicao(LocalDateTime.now());
-			 * avaliacaoPedido.setTipoAvaliacao(TipoAvaliacao.PEDIDO);
-			 * service.Salvar(avaliacaoPedido);
-			 * 
-			 * avaliacaoEntrega.setIdPedido(avaliacaoGeral.getIdDoPedido());
-			 * avaliacaoEntrega.setAvaliacao(avaliacaoGeral.getAvaliacaoDoEntregador().
-			 * getComentario());
-			 * avaliacaoEntrega.setQtdEstrelas(avaliacaoGeral.getAvaliacaoDoEntregador().
-			 * getEstrelas()); avaliacaoEntrega.setDtAvalicao(LocalDateTime.now());
-			 * avaliacaoEntrega.setTipoAvaliacao(TipoAvaliacao.ENTREGA);
-			 * service.Salvar(avaliacaoEntrega);
-			 */
 			return ResponseEntity.created(URI.create("/avaliacao/id/" + avaliacaoEntrega.getId())).build();
 		} catch (Exception e) {
 			e.printStackTrace();
