@@ -11,15 +11,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-<<<<<<< HEAD
 import jakarta.persistence.Transient;
-=======
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
->>>>>>> c080ee91f3804fb5c3dfa0fc2f950d1b9132cff7
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
