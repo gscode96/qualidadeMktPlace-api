@@ -36,7 +36,7 @@ public class Ouvidoria {
 	private String descricao;
 
 	@Column(name = "data_ouvidoria")
-	@NotNull(message = "A data é obrigatoria")
+	@NotNull(message = "A data é obrigatória")
 	private LocalDateTime dtAvalicao;
 
 	@Column(name = "forma_contato")

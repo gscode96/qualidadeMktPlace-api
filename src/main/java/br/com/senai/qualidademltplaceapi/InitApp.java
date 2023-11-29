@@ -25,7 +25,6 @@ public class InitApp {
 
 		return new Hibernate5JakartaModule();
 	}
-	
 	@Autowired
 	@Qualifier("emailServiceProxy")
 	private EmailService emailService;
@@ -36,9 +35,10 @@ public class InitApp {
 			
 	//		new Timer();
 				    	
-	    	emailService.sendEmail();
+			emailService.sendEmail();
 			
 			System.out.println("Subiu");
+			
 		};
 
 	}

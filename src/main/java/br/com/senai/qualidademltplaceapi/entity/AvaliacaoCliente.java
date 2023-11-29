@@ -11,7 +11,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+<<<<<<< HEAD
 import jakarta.persistence.Transient;
+=======
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+>>>>>>> c080ee91f3804fb5c3dfa0fc2f950d1b9132cff7
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,16 +40,17 @@ public class AvaliacaoCliente {
 	private Integer idPedido;
 
 	@Column(name = "qtde_estrelas")
-	@Size(min = 0, max = 5, message = "Só pode ter no max 5 estrelas.")
+	@Min(value = 1, message = "A quantidade de estrelas deve ser entre 1 e 5!")
+	@Max(value = 5, message = "A quantidade de estrelas deve ser entre 1 e 5!")
 	@NotNull(message = "A quantidade de estrelas é obrigatória!")
 	private Integer qtdEstrelas;
 
 	@Column(name = "avaliacao")
-	@NotBlank(message = "A avalição é obrigatória!")
+	@NotBlank(message = "A avaliação é obrigatória!")
 	private String avaliacao;
 
 	@Column(name = "data_avaliacao")
-	@NotNull(message = "A data é obrigatoria")
+	@NotNull(message = "A data da avaliação é obrigatoria!")
 	private LocalDateTime dtAvalicao;
 
 	@Enumerated(value = EnumType.STRING)

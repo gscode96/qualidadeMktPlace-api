@@ -11,6 +11,6 @@ public class AvaliacaoGeral {
 	
 	private Avaliacao avaliacaoDoRestaurante;
 	
-	private Avaliacao avaliacaoDoEntregado;
+	private Avaliacao avaliacaoDoEntregador;
 	
 }

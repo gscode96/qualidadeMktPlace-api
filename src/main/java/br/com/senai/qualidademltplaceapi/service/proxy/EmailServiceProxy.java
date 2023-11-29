@@ -41,29 +41,34 @@ public class EmailServiceProxy implements EmailService {
 			
 			Integer idCliente = pedido.getIdPedido();
 			
-			String link = "http://localhost:5173/?idCliente="+ idCliente ;
-
-			
-			//Monta o email para envio
-			Mail mail = new Mail(
-							new Email(/*email de quem manda->*/"luuiz.pereira.correa@gmail.com")
-									 ,/*cabesalho do email->*/ "Avaliação de satisfação Pede ai",
-								new Email(/*email de quem recebera->*/pedido.getEmail()),
-									new Content(/*Corpo body*/"text/plain",  link ));
-			
-			mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
-
-			Request request = new Request();
-			
-			try {
+			if (pedido.getIdPedido() == 76) {
 				
-				request.setMethod(Method.POST);
-				request.setEndpoint("mail/send");
-				request.setBody(mail.build());
-				this.sendGrid.api(request);
+			
 				
-			} catch (Exception ex) {
-				System.out.println(ex.getMessage());
+				String link = "http://localhost:5173/?idCliente="+ idCliente ;
+	
+				
+				//Monta o email para envio
+				Mail mail = new Mail(
+								new Email(/*email de quem manda->*/"luuiz.pereira.correa@gmail.com")
+										 ,/*cabesalho do email->*/ "Avaliação de satisfação Pede ai",
+									new Email(/*email de quem recebera->*/pedido.getEmail()),
+										new Content(/*Corpo body*/"text/plain",  link ));
+				
+				mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
+	
+				Request request = new Request();
+				
+				try {
+					
+					request.setMethod(Method.POST);
+					request.setEndpoint("mail/send");
+					request.setBody(mail.build());
+					this.sendGrid.api(request);
+					
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
 			}
 		}
 		return null ;
