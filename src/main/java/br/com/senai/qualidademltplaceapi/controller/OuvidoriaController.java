@@ -59,9 +59,9 @@ public class OuvidoriaController {
 	@PostMapping
 	public ResponseEntity<?> Inserir(@RequestBody String jsonOuvidoria) {
 		try {
-			ObjectMapper objetct = new ObjectMapper();
+			ObjectMapper object = new ObjectMapper();
 
-			Ouvidoria ouvidoriaSalva = objetct.readValue(jsonOuvidoria, Ouvidoria.class);
+			Ouvidoria ouvidoriaSalva = object.readValue(jsonOuvidoria, Ouvidoria.class);
 			ouvidoriaSalva.setDtAvaliacao(LocalDateTime.now());
 			service.Salvar(ouvidoriaSalva);
 			return ResponseEntity.created(URI.create("/ouvidoria/id/" + ouvidoriaSalva.getId())).build();
