@@ -10,5 +10,7 @@ public interface EmailService {
 	 public Runnable sendEmail();
 	
 	 public List<PedidoSalvo> getPedido();
+	 
+	 public void envioTeste();
 	
 }
