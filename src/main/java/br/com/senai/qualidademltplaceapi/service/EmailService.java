@@ -11,6 +11,6 @@ public interface EmailService {
 	
 	 public List<PedidoSalvo> getPedido();
 	 
-	 public void envioTeste();
+
 	
 }

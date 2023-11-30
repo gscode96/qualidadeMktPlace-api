@@ -48,11 +48,17 @@ public class EmailServiceProxy implements EmailService {
 				String link = "http://localhost:5173/?idCliente=" + idCliente;
 				String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
 
-				// Monta o email para envio
-				Mail mail = new Mail(new Email(/* email de quem manda-> */"luuiz.pereira.correa@gmail.com"),
-						/* cabesalho do email-> */ "Avaliação de satisfação Pede ai",
-						new Email(/* email de quem recebera-> */pedido.getEmail()),
-						new Content(/* Corpo body */"text/plain", link));
+				Mail mail = new Mail();
+				Email from = new Email("luuiz.pereira.correa@gmail.com");
+				Email to = new Email("gabriel_dos-santos@estudante.sc.senai.br");
+
+				mail.setFrom(from);
+
+				Personalization personalization = new Personalization();
+				personalization.addTo(to);
+				personalization.addDynamicTemplateData("link", link);
+				mail.addPersonalization(personalization);
+
 				mail.setTemplateId(templateId);
 
 				mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
@@ -109,40 +115,8 @@ public class EmailServiceProxy implements EmailService {
 		return pedidos;
 	}
 
-	public void envioTeste() {
-
-		String link = "http://localhost:5173/?idCliente=" + 1;
-		String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
-
-		Mail mail = new Mail(new Email("luuiz.pereira.correa@gmail.com"), "Avaliação de satisfação Pede ai",
-				new Email("gabriel_dos-santos@estudante.sc.senai.br"), new Content("text/plain", link));
-		
-		
-		mail.setTemplateId(templateId);
-	
-		mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
-		
 	
 
-		Request request = new Request();
-
-		try {
-
-			request.setMethod(Method.POST);
-			request.setEndpoint("/templates/"+ templateId);
-			request.setBody(mail.build());
-			this.sendGrid.api(request);
-
-			Response response = this.sendGrid.api(request);
-
-			System.out.println(response.getStatusCode());
-			System.out.println(response.getBody());
-			System.out.println(response.getHeaders());
-
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
-
-	}
+	
 
 }
