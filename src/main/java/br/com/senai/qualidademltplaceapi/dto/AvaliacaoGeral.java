@@ -7,6 +7,8 @@ public class AvaliacaoGeral {
 
 	private Integer idDoPedido;
 	
+	private Integer idDoRestaurante;
+	
 	private Avaliacao avaliacaoDoPedido;
 	
 	private Avaliacao avaliacaoDoRestaurante;

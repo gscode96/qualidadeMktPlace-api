@@ -40,14 +40,12 @@ public class EmailServiceProxy implements EmailService {
 		for (PedidoSalvo pedido : listaDePedidos) {
 			
 			Integer idCliente = pedido.getIdPedido();
+			Integer idRestaurante = pedido.getIdRestaurante();
 			
-			if (pedido.getIdPedido() == 76) {
+			if (pedido.getIdPedido() == 105) {
 				
-			
-				
-				String link = "http://localhost:5173/?idCliente="+ idCliente ;
-	
-				
+				String link = "http://localhost:5173/?idCliente="+ idCliente +"&idRestaurante=" + idRestaurante ;
+
 				//Monta o email para envio
 				Mail mail = new Mail(
 								new Email(/*email de quem manda->*/"luuiz.pereira.correa@gmail.com")
