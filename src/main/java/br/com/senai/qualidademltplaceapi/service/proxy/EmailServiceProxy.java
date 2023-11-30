@@ -44,7 +44,7 @@ public class EmailServiceProxy implements EmailService {
 			
 			if (pedido.getIdPedido() == 105) {
 				
-				String link = "http://localhost:5173/?idCliente="+ idCliente +"&idRestaurante=" + idRestaurante ;
+				String link = "http://localhost:5173/avaliacao/?idCliente="+ idCliente +"&idRestaurante=" + idRestaurante ;
 
 				//Monta o email para envio
 				Mail mail = new Mail(
