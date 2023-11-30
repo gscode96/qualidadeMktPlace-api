@@ -42,10 +42,12 @@ public class EmailServiceProxy implements EmailService {
 		for (PedidoSalvo pedido : listaDePedidos) {
 
 			Integer idCliente = pedido.getIdPedido();
+			Integer idRestaurante = pedido.getIdRestaurante();
 
 			if (pedido.getIdPedido() == 76) {
 
-				String link = "http://localhost:5173/?idCliente=" + idCliente;
+				String link = "http://localhost:5173/avaliacao/?idCliente=" + idCliente + "&idRestaurante="
+						+ idRestaurante;
 				String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
 
 				Mail mail = new Mail();
@@ -114,9 +116,5 @@ public class EmailServiceProxy implements EmailService {
 
 		return pedidos;
 	}
-
-	
-
-	
 
 }

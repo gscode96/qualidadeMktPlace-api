@@ -23,5 +23,8 @@ public interface AvaliacaoRepository extends JpaRepository<AvaliacaoCliente, Int
 
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.tipoAvaliacao = :tipoAvaliacao")
 	public Page<AvaliacaoCliente> listarPorTipo(TipoAvaliacao tipoAvaliacao, Pageable paginacao);
+	
+
+	
 
 }

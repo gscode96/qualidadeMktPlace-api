@@ -91,6 +91,7 @@ public class AvaliacaoController {
 	private AvaliacaoCliente extrairAvaliacao(AvaliacaoGeral avaliacaoGeral, TipoAvaliacao tipoAvaliacao) {
 		AvaliacaoCliente avaliacaoCliente = new AvaliacaoCliente();
 		avaliacaoCliente.setIdPedido(avaliacaoGeral.getIdDoPedido());
+		avaliacaoCliente.setIdRestaurante(avaliacaoGeral.getIdDoRestaurante());
 
 		switch (tipoAvaliacao) {
 		case RESTAURANTE:
