@@ -9,6 +9,8 @@ public class AvaliacaoGeral {
 	
 	private Integer idDoRestaurante;
 	
+	private String nomeRestaurante;
+	
 	private Avaliacao avaliacaoDoPedido;
 	
 	private Avaliacao avaliacaoDoRestaurante;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
+import jakarta.validation.constraints.NotBlank;
 
 @Service
 public class AvaliacaoServiceProxy implements AvaliacaoService {
@@ -40,6 +41,12 @@ public class AvaliacaoServiceProxy implements AvaliacaoService {
 	@Override
 	public AvaliacaoCliente Salvar(AvaliacaoCliente avaliacao) {
 		return service.Salvar(avaliacao);
+	}
+
+	@Override
+	public Page<AvaliacaoCliente> buscarPorRestaurante(String nome, Pageable paginacao) {
+
+		return null;
 	}
 
 }

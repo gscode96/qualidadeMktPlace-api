@@ -38,6 +38,10 @@ public class AvaliacaoCliente {
 	@Column(name = "id_restaurante")
 	@NotNull(message = "O id do Restaurante é obrigatório!")
 	private Integer idRestaurante;
+	
+	@Column(name = "nome_restaurante")
+	@NotBlank(message = "O nome do restaurante é obrigatório!")
+	private String nomeRestaurante;
 
 	@Column(name = "qtde_estrelas")
 	@Min(value = 1, message = "A quantidade de estrelas deve ser entre 1 e 5!")

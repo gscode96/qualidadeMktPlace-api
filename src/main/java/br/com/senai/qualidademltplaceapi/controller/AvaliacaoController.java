@@ -67,6 +67,20 @@ public class AvaliacaoController {
 		return ResponseEntity.ok(converter.toJsonList(avaliacaoSalva));
 	}
 
+	@GetMapping("restaurante/{nome}")
+	public ResponseEntity<?> listarPorRestaurante(@PathVariable("nome") String nome) {
+		
+		try {
+			Pageable paginacao = PageRequest.of(0, 15);
+			Page<AvaliacaoCliente> avaliacaoSalva = service.buscarPorRestaurante(nome, paginacao);
+			return ResponseEntity.ok(converter.toJsonList(avaliacaoSalva));
+		} catch (Exception e) {
+			e.printStackTrace();
+		 return ResponseEntity.badRequest().body("Ocorreu um erro ao buscar a avaliação. Motivo:" + e.getMessage());
+		}
+	
+	}
+
 	@PostMapping
 	public ResponseEntity<?> Inserir(@RequestBody String Jsonavaliacao) {
 
@@ -92,6 +106,7 @@ public class AvaliacaoController {
 		AvaliacaoCliente avaliacaoCliente = new AvaliacaoCliente();
 		avaliacaoCliente.setIdPedido(avaliacaoGeral.getIdDoPedido());
 		avaliacaoCliente.setIdRestaurante(avaliacaoGeral.getIdDoRestaurante());
+		avaliacaoCliente.setNomeRestaurante(avaliacaoGeral.getNomeRestaurante().toUpperCase());
 
 		switch (tipoAvaliacao) {
 		case RESTAURANTE:
