@@ -18,12 +18,16 @@ import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
 
 import br.com.senai.qualidademltplaceapi.dto.PedidoSalvo;
+import br.com.senai.qualidademltplaceapi.repository.AvaliacaoRepository;
 import br.com.senai.qualidademltplaceapi.service.EmailService;
 
 @Service
 @Qualifier("emailServiceProxy")
 public class EmailServiceProxy implements EmailService {
 
+	@Autowired
+	AvaliacaoRepository repository;
+	
 	@Autowired
 	SendGrid sendGrid;
 
@@ -86,6 +90,8 @@ public class EmailServiceProxy implements EmailService {
 	@Override
 	public List<PedidoSalvo> getPedido() {
 
+		Integer ultimoId = repository.idMax();
+		
 		JSONObject bodyRequest = new JSONObject();
 		bodyRequest.put("statusDoPedido", "ENTREGUE");
 

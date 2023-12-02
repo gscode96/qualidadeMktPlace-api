@@ -27,5 +27,7 @@ public interface AvaliacaoRepository extends JpaRepository<AvaliacaoCliente, Int
 	@Query(value = "SELECT a FROM AvaliacaoCliente a WHERE a.nomeRestaurante = :nome ORDER BY a.qtdEstrelas DESC")
 	public Page<AvaliacaoCliente> listarPorRestaurante(String nome, Pageable paginacao);
 	
+	@Query(value = "SELECT MAX(ac.idPedido) from AvaliacaoCliente ac" )
+	public Integer idMax();
 
 }
