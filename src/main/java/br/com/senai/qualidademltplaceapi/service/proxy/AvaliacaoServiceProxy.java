@@ -46,7 +46,7 @@ public class AvaliacaoServiceProxy implements AvaliacaoService {
 	@Override
 	public Page<AvaliacaoCliente> buscarPorRestaurante(String nome, Pageable paginacao) {
 
-		return null;
+		return service.buscarPorRestaurante(nome, paginacao);
 	}
 
 }

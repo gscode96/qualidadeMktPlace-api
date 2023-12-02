@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.sendgrid.Method;
 import com.sendgrid.Request;
-import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
 
@@ -43,16 +41,18 @@ public class EmailServiceProxy implements EmailService {
 
 			Integer idCliente = pedido.getIdPedido();
 			Integer idRestaurante = pedido.getIdRestaurante();
+			String nomeRestaurante = pedido.getNomeDoRestaurante();
 
-			if (pedido.getIdPedido() == 76) {
+			if (pedido.getIdPedido() == 105) {
 
-				String link = "http://localhost:5173/avaliacao/?idCliente=" + idCliente + "&idRestaurante="
-						+ idRestaurante;
+				String link = "http://localhost:5173/avaliacao/?idCliente=" + idCliente + 
+															   "&nomeRestaurante="+ nomeRestaurante +
+															   "&idRestaurante="+ idRestaurante;
 				String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
 
 				Mail mail = new Mail();
 				Email from = new Email("luuiz.pereira.correa@gmail.com");
-				Email to = new Email("gabriel_dos-santos@estudante.sc.senai.br");
+				Email to = new Email(pedido.getEmail());
 
 				mail.setFrom(from);
 
@@ -87,7 +87,7 @@ public class EmailServiceProxy implements EmailService {
 	public List<PedidoSalvo> getPedido() {
 
 		JSONObject bodyRequest = new JSONObject();
-		bodyRequest.put("statusDoPedido", "REALIZADO");
+		bodyRequest.put("statusDoPedido", "ENTREGUE");
 
 		List<PedidoSalvo> pedidos = new ArrayList<>();
 
@@ -106,9 +106,10 @@ public class EmailServiceProxy implements EmailService {
 			pedidoSalvo.setIdPedido(pedidoJson.getInt("id_pedido"));
 			pedidoSalvo.setIdCliente(pedidoJson.getJSONObject("cliente").getInt("id_cliente"));
 			pedidoSalvo.setIdRestaurante(pedidoJson.getJSONObject("restaurante").getInt("id_restaurante"));
+			pedidoSalvo.setNomeDoRestaurante(pedidoJson.getJSONObject("restaurante").getString("nome"));
 			pedidoSalvo.setStatusPedido(pedidoJson.getString("status"));
 			pedidoSalvo.setEmail(pedidoJson.getJSONObject("cliente").getString("email"));
-
+			
 			pedidos.add(pedidoSalvo);
 		}
 

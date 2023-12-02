@@ -18,6 +18,9 @@ public class PedidoSalvo {
 	@NotNull(message = "O id do restaurante é obrigatório!")
 	@Positive(message = "O id do restaurante deve ser positivo!")
 	Integer idRestaurante;
+	
+	@NotNull(message = "O nome do restaurante é obrigatório!")
+	String nomeDoRestaurante;
 
 	@NotNull(message = "O status do pedido é obrigatório!")
 	String StatusPedido;

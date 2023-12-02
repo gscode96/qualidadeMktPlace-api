@@ -35,7 +35,7 @@ public class InitApp {
 			
 	//		new Timer();
 				    	
-		//	emailService.sendEmail();
+			emailService.sendEmail();
 			
 			System.out.println("Subiu");
 			
