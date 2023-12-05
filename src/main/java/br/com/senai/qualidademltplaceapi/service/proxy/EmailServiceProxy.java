@@ -93,14 +93,14 @@ public class EmailServiceProxy implements EmailService {
 		Integer ultimoId = repository.idMax();
 		
 		JSONObject bodyRequest = new JSONObject();
-		bodyRequest.put("statusDoPedido", "ENTREGUE");
+		bodyRequest.put("statusDoPedido", "ENTREGUE&id-ultimo-pedido=" + ultimoId);
 
 		List<PedidoSalvo> pedidos = new ArrayList<>();
 
 		// Chama integração
 		JSONObject pedidoSalvos = this.toApiPedidos.requestBody("direct:toApiPedidos", bodyRequest.toString(),
 				JSONObject.class);
-		System.out.println("estamos aq 123");
+	
 		JSONArray listagem = pedidoSalvos.getJSONArray("listagem");
 
 		// Faz o requerimento dos atributos especificos
