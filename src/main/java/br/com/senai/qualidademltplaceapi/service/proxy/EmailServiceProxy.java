@@ -104,7 +104,7 @@ public class EmailServiceProxy implements EmailService {
 		// Chama integração
 		JSONObject pedidoSalvos = this.toApiPedidos.requestBody("direct:toApiPedidos", bodyRequest.toString(),
 				JSONObject.class);
-		
+
 		JSONArray listagem = pedidoSalvos.getJSONArray("listagem");
 
 		// Faz o requerimento dos atributos especificos
