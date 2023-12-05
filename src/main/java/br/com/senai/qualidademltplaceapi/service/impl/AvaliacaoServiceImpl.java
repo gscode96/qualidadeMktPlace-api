@@ -24,7 +24,7 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 	public AvaliacaoCliente buscarPorAvaliacao(Integer idAvaliacao) {
 
 		AvaliacaoCliente AvaliacaoEncontrada = avaliacaoRepository.buscarPorAvaliacao(idAvaliacao);
-		Preconditions.checkNotNull(AvaliacaoEncontrada, "não foi encontrado avaliação para o id informado ");
+		Preconditions.checkNotNull(AvaliacaoEncontrada, "Não foi encontrado avaliação para o id informado ");
 
 		return AvaliacaoEncontrada;
 
@@ -57,22 +57,23 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 			AvaliacaoCliente avaliacaoSalva = avaliacaoRepository.save(avaliacao);
 			return avaliacaoSalva;
 		} else {
-			 throw new IllegalArgumentException("O pedido informado já esta salvo");
-			
-		}
-	
-		
+			throw new IllegalArgumentException("O pedido informado já esta salvo");
 
-	
+		}
+
 	}
 
 	@Override
 	public Page<AvaliacaoCliente> buscarPorRestaurante(String nome, Pageable paginacao) {
-		
+		if (nome.length() < 2) {
+			throw new IllegalArgumentException(
+					"O nome do restaurante para pesquisa deve conter mais que 2 caracteres!");
+		}
 		Page<AvaliacaoCliente> avaliacao = avaliacaoRepository.listarPorRestaurante(nome.toUpperCase(), paginacao);
-		Preconditions.checkNotNull(avaliacao, "Não foi encontrado pedidos para o restaurante informado!");
+		if (avaliacao.getTotalElements() < 1) {
+			throw new IllegalArgumentException("Não foi encontrado pedidos para o restaurante informado!");
+		}
 		return avaliacao;
 	}
-	
 
 }
