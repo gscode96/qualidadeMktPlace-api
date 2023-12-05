@@ -75,7 +75,6 @@ public class AvaliacaoController {
 			Page<AvaliacaoCliente> avaliacaoSalva = service.buscarPorRestaurante(nome, paginacao);
 			return ResponseEntity.ok(converter.toJsonList(avaliacaoSalva));
 		} catch (Exception e) {
-			e.printStackTrace();
 		 return ResponseEntity.badRequest().body("Ocorreu um erro ao buscar a avaliação. Motivo:" + e.getMessage());
 		}
 	
