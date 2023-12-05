@@ -65,7 +65,7 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 
 	@Override
 	public Page<AvaliacaoCliente> buscarPorRestaurante(String nome, Pageable paginacao) {
-		if (nome.length() < 2) {
+		if (nome.length() <= 2) {
 			throw new IllegalArgumentException(
 					"O nome do restaurante para pesquisa deve conter mais que 2 caracteres!");
 		}
