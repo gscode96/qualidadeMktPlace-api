@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
-import jakarta.validation.constraints.NotBlank;
 
 @Service
 public class AvaliacaoServiceProxy implements AvaliacaoService {
@@ -47,6 +46,12 @@ public class AvaliacaoServiceProxy implements AvaliacaoService {
 	public Page<AvaliacaoCliente> buscarPorRestaurante(String nome, Pageable paginacao) {
 
 		return service.buscarPorRestaurante(nome, paginacao);
+	}
+
+	@Override
+	public Integer idMax() {
+		return service.idMax() ;
+		
 	}
 
 }

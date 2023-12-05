@@ -1,4 +1,4 @@
-package br.com.senai.qualidademltplaceapi.integration;
+package br.com.senai.qualidademltplaceapi.integration.SendGrid;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

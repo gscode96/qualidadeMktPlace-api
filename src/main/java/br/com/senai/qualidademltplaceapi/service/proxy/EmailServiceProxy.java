@@ -26,7 +26,8 @@ import br.com.senai.qualidademltplaceapi.service.EmailService;
 public class EmailServiceProxy implements EmailService {
 
 	@Autowired
-	AvaliacaoRepository repository;
+	@Qualifier("avaliacaoServiceProxy")
+	private AvaliacaoServiceProxy proxy ;
 	
 	@Autowired
 	SendGrid sendGrid;
@@ -90,17 +91,20 @@ public class EmailServiceProxy implements EmailService {
 	@Override
 	public List<PedidoSalvo> getPedido() {
 
-		Integer ultimoId = repository.idMax();
+		Integer ultimoId = proxy.idMax();
+		
+		System.out.println(ultimoId);
+		
 		
 		JSONObject bodyRequest = new JSONObject();
-		bodyRequest.put("statusDoPedido", "ENTREGUE");
+		bodyRequest.put("statusDoPedido", "ENTREGUE&id-ultimo-pedido=" + ultimoId);
 
 		List<PedidoSalvo> pedidos = new ArrayList<>();
 
 		// Chama integração
 		JSONObject pedidoSalvos = this.toApiPedidos.requestBody("direct:toApiPedidos", bodyRequest.toString(),
 				JSONObject.class);
-		System.out.println("estamos aq 123");
+		
 		JSONArray listagem = pedidoSalvos.getJSONArray("listagem");
 
 		// Faz o requerimento dos atributos especificos

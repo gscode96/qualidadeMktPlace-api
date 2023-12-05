@@ -12,7 +12,6 @@ import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.repository.AvaliacaoRepository;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
-import jakarta.validation.constraints.NotBlank;
 
 @Service
 public class AvaliacaoServiceImpl implements AvaliacaoService {
@@ -72,6 +71,11 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 		Page<AvaliacaoCliente> avaliacao = avaliacaoRepository.listarPorRestaurante(nome.toUpperCase(), paginacao);
 		Preconditions.checkNotNull(avaliacao, "Não foi encontrado pedidos para o restaurante informado!");
 		return avaliacao;
+	}
+
+	@Override
+	public Integer idMax() {
+		return avaliacaoRepository.idMax();
 	}
 	
 
