@@ -27,12 +27,14 @@ public class EmailServiceProxy implements EmailService {
 
 	@Autowired
 	AvaliacaoRepository repository;
-	
+
 	@Autowired
 	SendGrid sendGrid;
 
 	@Autowired
 	private ProducerTemplate toApiPedidos;
+
+	private Integer idpedido;
 
 	// Metodo para envio de email ,Runnable devido a class time
 	public Runnable sendEmail() {
@@ -47,42 +49,39 @@ public class EmailServiceProxy implements EmailService {
 			Integer idRestaurante = pedido.getIdRestaurante();
 			String nomeRestaurante = pedido.getNomeDoRestaurante();
 
-			if (pedido.getIdPedido() == 105) {
+			String link = "http://localhost:5173/avaliacao/?idCliente=" + idCliente + "&nomeRestaurante="
+					+ nomeRestaurante + "&idRestaurante=" + idRestaurante;
+			String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
 
-				String link = "http://localhost:5173/avaliacao/?idCliente=" + idCliente + 
-															   "&nomeRestaurante="+ nomeRestaurante +
-															   "&idRestaurante="+ idRestaurante;
-				String templateId = "d-dc960c666c034de6a7f7f1b4af1c9a1c";
+			Mail mail = new Mail();
+			Email from = new Email("luuiz.pereira.correa@gmail.com");
+			Email to = new Email(pedido.getEmail());
 
-				Mail mail = new Mail();
-				Email from = new Email("luuiz.pereira.correa@gmail.com");
-				Email to = new Email(pedido.getEmail());
+			mail.setFrom(from);
 
-				mail.setFrom(from);
+			Personalization personalization = new Personalization();
+			personalization.addTo(to);
+			personalization.addDynamicTemplateData("link", link);
+			mail.addPersonalization(personalization);
 
-				Personalization personalization = new Personalization();
-				personalization.addTo(to);
-				personalization.addDynamicTemplateData("link", link);
-				mail.addPersonalization(personalization);
+			mail.setTemplateId(templateId);
 
-				mail.setTemplateId(templateId);
+			mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
 
-				mail.setReplyTo(new Email("luiz_h_correa@estudante.sc.senai.br"));
+			Request request = new Request();
 
-				Request request = new Request();
+			try {
 
-				try {
+				request.setMethod(Method.POST);
+				request.setEndpoint("mail/send");
+				request.setBody(mail.build());
+				this.sendGrid.api(request);
 
-					request.setMethod(Method.POST);
-					request.setEndpoint("mail/send");
-					request.setBody(mail.build());
-					this.sendGrid.api(request);
-
-				} catch (Exception ex) {
-					System.out.println(ex.getMessage());
-				}
+			} catch (Exception ex) {
+				System.out.println(ex.getMessage());
 			}
 		}
+
 		return null;
 	}
 
@@ -90,8 +89,11 @@ public class EmailServiceProxy implements EmailService {
 	@Override
 	public List<PedidoSalvo> getPedido() {
 
-		Integer ultimoId = repository.idMax();
-		
+		Integer primeiroId = idpedido;
+		if (idpedido == null) {
+			primeiroId = 0;
+		}
+
 		JSONObject bodyRequest = new JSONObject();
 		bodyRequest.put("statusDoPedido", "ENTREGUE");
 
@@ -115,10 +117,14 @@ public class EmailServiceProxy implements EmailService {
 			pedidoSalvo.setNomeDoRestaurante(pedidoJson.getJSONObject("restaurante").getString("nome"));
 			pedidoSalvo.setStatusPedido(pedidoJson.getString("status"));
 			pedidoSalvo.setEmail(pedidoJson.getJSONObject("cliente").getString("email"));
-			
+
 			pedidos.add(pedidoSalvo);
 		}
+		List<PedidoSalvo> list = new ArrayList<PedidoSalvo>();
 
+		for (PedidoSalvo pedidoSalvo : list) {
+			Integer idpedido = pedidoSalvo.getIdPedido();
+		}
 		System.out.println(pedidos);
 
 		return pedidos;
