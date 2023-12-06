@@ -12,7 +12,6 @@ import br.com.senai.qualidademltplaceapi.entity.AvaliacaoCliente;
 import br.com.senai.qualidademltplaceapi.entity.enums.TipoAvaliacao;
 import br.com.senai.qualidademltplaceapi.repository.AvaliacaoRepository;
 import br.com.senai.qualidademltplaceapi.service.AvaliacaoService;
-import jakarta.validation.constraints.NotBlank;
 
 @Service
 public class AvaliacaoServiceImpl implements AvaliacaoService {
@@ -75,5 +74,11 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 		}
 		return avaliacao;
 	}
+
+	@Override
+	public Integer idMax() {
+		return avaliacaoRepository.idMax();
+	}
+
 
 }

@@ -32,5 +32,7 @@ public interface AvaliacaoService {
 
 	public Page<AvaliacaoCliente> buscarPorRestaurante(
 			@NotBlank(message = "O nome do restaurante é obrigatorio!") String nome, Pageable paginacao);
+	
+	public Integer idMax ();
 
 };
